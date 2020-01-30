@@ -1,30 +1,69 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Form.css";
 
-const Form = () => {
+const Form = ({ addStudent }) => {
+  const [student, setStudent] = useState({
+    name: " ",
+    email: " ",
+    class: " ",
+    role: " "
+  });
+
+  const onChange = e => {
+    setStudent({ ...student, [e.target.name]: e.target.value });
+  };
+  const enabled =
+    student.name === " " ||
+    student.email === " " ||
+    student.class === " " ||
+    student.role === " ";
+
+  const onSubmit = e => {
+    e.preventDefault();
+    addStudent(student);
+    setStudent({ name: " ", email: " ", class: " ", role: " " });
+  };
   return (
     <div className="form-group">
       <h1>Tell me about yourself</h1>
-      <form className="'react-form">
+      <form onSubmit={onSubmit} className="'react-form">
         <label htmlFor="name">Your name</label>
-        <input className="form-input" id="title" type="text" />
+        <input
+          onChange={onChange}
+          className="form-input"
+          id="title"
+          name="name"
+          type="text"
+          value={student.name}
+        />
         <label htmlFor="email">Your email</label>
-        <input className="form-input" id="email" type="email" />
+        <input
+          onChange={onChange}
+          className="form-input"
+          id="email"
+          name="email"
+          type="email"
+          value={student.email}
+        />
         <label htmlFor="text">Your class</label>
         <input
+          onChange={onChange}
           className="form-input"
           id="text"
           type="text"
-          placeholder="eg WEB27..."
+          name="class"
+          value={student.class}
         />
         <label htmlFor="name">Your role</label>
         <input
+          onChange={onChange}
           className="form-input"
           id="title"
           type="text"
-          placeholder="eg Data scientist..."
+          name="role"
+          value={student.role}
         />
-        <button className="btn" type="submit">
+        <button disabled={enabled} className="btn" type="submit">
           {" "}
           Submit..{" "}
         </button>
