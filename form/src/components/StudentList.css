@@ -1,0 +1,18 @@
+.card {
+  background: #fff;
+  border-radius: 2px;
+  height: 300px;
+  margin: 1em auto;
+  position: relative;
+  width: 300px;
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+}
+.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+p {
+  font-family: "Courier New", Courier, monospace;
+}
